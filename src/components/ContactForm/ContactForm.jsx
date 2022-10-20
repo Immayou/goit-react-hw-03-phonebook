@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from 'prop-types'; 
-import shortid from "shortid";
+import { generate } from "shortid";
 import { PhoneForm, NameLabel, InputNameField, NumberLabel, InputNumberField, FormButton } from './ContactForm.styled'
 
 class ContactForm extends Component {
@@ -13,8 +13,8 @@ class ContactForm extends Component {
         number: ''
     }
 
-    nameInputId = shortid.generate();
-    numberInputId = shortid.generate();
+    nameInputId = generate();
+    numberInputId = generate();
 
     handleInput = e => {
     this.setState({[e.currentTarget.name]: e.currentTarget.value})}
@@ -24,7 +24,7 @@ class ContactForm extends Component {
         const contactToAdd = {
           name: this.state.name, 
           number: this.state.number,
-          id: shortid.generate()
+          id: generate()
         }
         this.props.submitData(contactToAdd)
         this.reset()
